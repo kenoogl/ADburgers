@@ -326,3 +326,83 @@ $$
 - ACC-P1-T1
 - ACC-P4-T8
 - ACC-P5-FIG
+
+------
+
+## 10. ベンチマーク問題定義 (Problem 1–5)
+
+本プロジェクトでは以下の5つの標準問題を検証対象とする。
+
+**共通支配方程式**:
+$$
+u_t + u u_x = \nu u_{xx}
+$$
+
+### Problem 1: Exact Solution (Wood)
+
+- **領域**: $0 \le x \le 1$
+- **パラメータ**: $a=2$ (または $a>1$)
+- **初期条件**:
+  $$
+  u(x,0) = \frac{2\nu\pi\sin(\pi x)}{a+\cos(\pi x)}
+  $$
+- **境界条件**: $u(0,t)=u(1,t)=0$ (Homogeneous Dirichlet)
+- **厳密解**:
+  $$
+  u(x,t) = \frac{2\nu\pi e^{-\pi^2 \nu t}\sin(\pi x)}{a+e^{-\pi^2 \nu t}\cos(\pi x)}
+  $$
+
+### Problem 2: Cole-Hopf / Fourier Series
+
+- **領域**: $0 \le x \le 1$
+- **初期条件**:
+  $$
+  u(x,0) = \sin(\pi x)
+  $$
+- **境界条件**: $u(0,t)=u(1,t)=0$
+- **厳密解**:
+  $$
+  u(x,t) = \frac{2\pi\nu \sum_{n=1}^{\infty} a_n e^{-n^2\pi^2\nu t} n \sin(n\pi x)}{a_0 + \sum_{n=1}^{\infty} a_n e^{-n^2\pi^2\nu t} \cos(n\pi x)}
+  $$
+  係数（数値積分で算出）:
+  $$
+  a_0 = \int_0^1 \exp\left(-\frac{1-\cos(\pi x)}{2\pi\nu}\right) dx, \quad
+  a_n = 2\int_0^1 \exp\left(-\frac{1-\cos(\pi x)}{2\pi\nu}\right)\cos(n\pi x) dx
+  $$
+
+### Problem 3: Cole-Hopf / Fourier Series (Different IC)
+
+- **領域**: $0 \le x \le 1$
+- **初期条件**:
+  $$
+  u(x,0) = 4x(1-x)
+  $$
+- **境界条件**: $u(0,t)=u(1,t)=0$
+- **厳密解**: Problem 2 と同形式だが係数積分が以下となる:
+  $$
+  a_0 = \int_0^1 \exp\left(-\frac{x^2(3-2x)}{3\nu}\right) dx, \quad
+  a_n = 2\int_0^1 \exp\left(-\frac{x^2(3-2x)}{3\nu}\right)\cos(n\pi x) dx
+  $$
+
+### Problem 4: Shock-like Solution ($t_0=1$)
+
+- **領域**: $0 \le x \le 8$
+- **初期条件**: $t_0=1$ における厳密解の値を与える
+- **境界条件**: $u(0,t)=u(8,t)=0$
+- **厳密解**:
+  $$
+  u(x,t) = \frac{x/t}{1 + \sqrt{t/t_0} \exp\left(\frac{x^2}{4\nu t}\right)}, \quad t_0 = \exp\left(\frac{1}{8\nu}\right)
+  $$
+
+### Problem 5: Piecewise IC / Inhomogeneous BC
+
+- **領域**: $0 \le x \le 12$
+- **初期条件**:
+  $$
+  u(x,0) = \begin{cases} 1 & (0 \le x \le 5) \\ 6-x & (5 < x \le 6) \\ 0 & (6 < x \le 12) \end{cases}
+  $$
+- **境界条件**:
+  - $u(0,t) = 1$
+  - $u(12,t) = 0$
+- **厳密解**: なし（物理挙動の安定性を検証）
+

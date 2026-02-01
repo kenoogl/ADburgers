@@ -37,6 +37,7 @@ struct ProblemSpec
     u0::Function            # (x::Float64) -> Float64
     bc_left::BCTime;  bc_right::BCTime
     bc_left_coeff::BCCoef; bc_right_coeff::BCCoef
+    exact_solution::Union{Function, Nothing} # (x,t)->u 厳密解が存在する場合
 end
 ```
 
