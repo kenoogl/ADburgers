@@ -12,11 +12,11 @@
     - [x] `horner_update!` の実装 (時間進行) <!-- id: 202 -->
     - [x] `solve` の実装 (ループ, BC, 保存処理) <!-- id: 203 -->
 
-- [ ] **問題定義 & Factory** <!-- id: 300 -->
-    - [ ] `problems.jl`: Problem 1 実装 (厳密解) <!-- id: 301 -->
-    - [ ] `problems.jl`: Problem 4 実装 (区分的/厳密解) <!-- id: 302 -->
-    - [ ] `problems.jl`: Problem 5 実装 (衝撃波) <!-- id: 303 -->
-    - [ ] `factory.jl`: `get_problem(id)` の実装 <!-- id: 304 -->
+- [x] **問題定義 & Factory** <!-- id: 300 -->
+    - [x] `problems.jl`: Problem 1 実装 (厳密解) <!-- id: 301 -->
+    - [x] `problems.jl`: Problem 4 実装 (区分的/厳密解) <!-- id: 302 -->
+    - [x] `problems.jl`: Problem 5 実装 (衝撃波) <!-- id: 303 -->
+    - [x] `factory.jl`: `get_problem(id)` の実装 <!-- id: 304 -->
 
 ## フェーズ 2: 検証・解析 (v0.2.0)
 - [ ] **参照解 (Problem 2/3)** <!-- id: 400 -->

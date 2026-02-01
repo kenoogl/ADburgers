@@ -33,6 +33,13 @@ struct ProblemSpec
     bc_right::BCTime
     bc_left_coeff::BCCoef
     bc_right_coeff::BCCoef
+    
+    exact_solution::Union{Function, Nothing} # (x, t) -> u_exact
+end
+
+# Outer constructor for backward compatibility (or convenience) which defaults exact_solution to nothing
+function ProblemSpec(a, b, ν, t0, tmax, u0, bc_left, bc_right, bc_left_coeff, bc_right_coeff)
+    ProblemSpec(a, b, ν, t0, tmax, u0, bc_left, bc_right, bc_left_coeff, bc_right_coeff, nothing)
 end
 
 """
