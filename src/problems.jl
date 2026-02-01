@@ -9,8 +9,8 @@ BC: u(0,t) = u(1,t) = 0
 IC: u(x,0) = 2νπ sin(πx) / (a + cos(πx)), a=2 (>1)
 Exact: Eq (13) in paper.
 """
-function problem1(; ν=0.01, N=40) # N argument is mainly for solver, but kept here if needed for defaults context
-    a_param = 2.0 # Fixed as per problem description "a=2" or "a>1"
+function problem1(; ν=0.01, N=40, a=2.0) # N argument is mainly for solver, but kept here if needed for defaults context
+    a_param = a # Fixed as per problem description "a=2" or "a>1"
     
     L = 0.0
     R = 1.0

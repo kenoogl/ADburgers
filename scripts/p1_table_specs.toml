@@ -1,0 +1,30 @@
+[[tables]]
+name = "Table1"
+nu = 1.0
+a = 2.0
+N = 40
+dt = 0.0001
+t = 0.001
+Ks = [2, 4]
+# Use multiple dt values from the paper (overrides dt when present)
+dts = [0.0001, 0.00005, 0.000025]
+# Fill the x locations from the paper (must be within [0,1])
+x = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+# Formatting
+digits = 6
+x_digits = 4
+
+[[tables]]
+name = "Table2"
+nu = 0.2
+a = 2.0
+N = 40
+dt = 0.0001
+t = 0.001
+Ks = [2, 4]
+# Multiple nu values for Table2
+nus = [0.1, 0.2, 0.5]
+# Fill the x locations from the paper (must be within [0,1])
+x = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+digits = 6
+x_digits = 4
