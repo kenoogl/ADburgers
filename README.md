@@ -56,5 +56,12 @@ julia --project=. scripts/verify_benchmarks.jl
 *   `test/`: ユニットテスト
 *   `.kiro/`: プロジェクト仕様書・要件定義など
 
+## 参考文献
+本プロジェクトは、以下の論文で提案された手法（Method of Lines + 自動微分的Taylor展開）に基づいています。
+
+*   **"Numerical solution of the Burgers' equation by automatic differentiation"**
+    *   本実装は、この論文の Benchmark Problem 1–5 の追試・再現を目的としています。
+    *   係数パラメータ (e.g. Problem 1 の $a$) や計算条件はこの論文の記載に準拠（一部、再現性の観点で調整あり）しています。
+
 ## ライセンス
 MIT License
