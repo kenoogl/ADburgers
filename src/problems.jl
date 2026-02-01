@@ -122,28 +122,37 @@ function problem5(; ν=0.01)
 end
 
 """
-    calc_cole_hopf_exact(x, t, ν, a0_integrand, an_integrand; n_max=1000)
+    compute_cole_hopf_coeffs(ν, a0_integrand, an_integrand; n_max=1000)
 
-Helper to calculate exact solution using Cole-Hopf Fourier Transformation.
+Precomputes Fourier coefficients for Cole-Hopf solution.
 """
-function calc_cole_hopf_exact(x, t, ν, a0_integrand, an_integrand; n_max=1000)
+function compute_cole_hopf_coeffs(ν, a0_integrand, an_integrand; n_max=1000)
     # Compute a0
-    # a0 = ∫_0^1 a0_integrand(x) dx
     a0, _ = quadgk(a0_integrand, 0.0, 1.0; rtol=1e-12)
     
+    an_list = zeros(Float64, n_max)
+    for n in 1:n_max
+        an_func(y) = an_integrand(y, n)
+        an_val, _ = quadgk(an_func, 0.0, 1.0; rtol=1e-12)
+        an_list[n] = 2.0 * an_val
+    end
+    
+    return a0, an_list
+end
+
+"""
+    eval_cole_hopf(x, t, ν, a0, an_list)
+
+Evaluates Cole-Hopf solution using precomputed coefficients.
+"""
+function eval_cole_hopf(x, t, ν, a0, an_list)
     sum_numer = 0.0
     sum_denom = 0.0
     
+    n_max = length(an_list)
+    
     for n in 1:n_max
-        # Compute an
-        # an = 2 * ∫_0^1 an_integrand(x, n) dx
-        # Optimization: Pass n to integrand closure if possible to avoid recompiling?
-        # quadgk accepts function.
-        an_func(y) = an_integrand(y, n)
-        an_val, _ = quadgk(an_func, 0.0, 1.0; rtol=1e-12)
-        an = 2.0 * an_val
-        
-        # Terms
+        an = an_list[n]
         exp_factor = exp(-n^2 * π^2 * ν * t)
         
         sum_numer += an * exp_factor * n * sin(n * π * x)
@@ -155,6 +164,7 @@ function calc_cole_hopf_exact(x, t, ν, a0_integrand, an_integrand; n_max=1000)
     
     return numer / denom
 end
+
 
 """
     problem2(; ν=0.1, n_max=1000) -> ProblemSpec
@@ -180,8 +190,11 @@ function problem2(; ν=0.1, n_max=1000)
     a0_int(x) = exp(-(1.0 - cos(π * x)) / (2.0 * π * ν))
     an_int(x, n) = exp(-(1.0 - cos(π * x)) / (2.0 * π * ν)) * cos(n * π * x)
     
+    # Precompute coefficients
+    a0, an_list = compute_cole_hopf_coeffs(ν, a0_int, an_int; n_max=n_max)
+    
     function exact_sol(x, t)
-        return calc_cole_hopf_exact(x, t, ν, a0_int, an_int; n_max=n_max)
+        return eval_cole_hopf(x, t, ν, a0, an_list)
     end
     
     return ProblemSpec(L, R, ν, t0, tmax, u0_func, bc_left, bc_right, bc_left_coef, bc_right_coef, exact_sol)
@@ -212,8 +225,11 @@ function problem3(; ν=1.0, n_max=1000)
     a0_int(x) = exp(-gamma(x))
     an_int(x, n) = exp(-gamma(x)) * cos(n * π * x)
     
+    # Precompute coefficients
+    a0, an_list = compute_cole_hopf_coeffs(ν, a0_int, an_int; n_max=n_max)
+    
     function exact_sol(x, t)
-        return calc_cole_hopf_exact(x, t, ν, a0_int, an_int; n_max=n_max)
+        return eval_cole_hopf(x, t, ν, a0, an_list)
     end
     
     return ProblemSpec(L, R, ν, t0, tmax, u0_func, bc_left, bc_right, bc_left_coef, bc_right_coef, exact_sol)

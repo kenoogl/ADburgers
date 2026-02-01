@@ -19,23 +19,23 @@
     - [x] `factory.jl`: `get_problem(id)` の実装 <!-- id: 304 -->
 
 ## フェーズ 2: 検証・解析 (v0.2.0)
-- [ ] **参照解 (Problem 2/3)** <!-- id: 400 -->
-    - [ ] `ReferenceSpec` 構造体の実装 <!-- id: 401 -->
-    - [ ] `Cole-Hopf` Fourier 積分器の実装 (`QuadGK`) <!-- id: 402 -->
-    - [ ] `ref_self_convergence` (自己収束判定) の実装 <!-- id: 403 -->
-    - [ ] `problems.jl`: Problem 2 & 3 実装 <!-- id: 404 -->
+- [x] **参照解 (Problem 2/3)** <!-- id: 400 -->
+    - [x] `ReferenceSpec` 構造体の実装 <!-- id: 401 -->
+    - [x] `Cole-Hopf` Fourier 積分器の実装 (`QuadGK`) <!-- id: 402 -->
+    - [x] `ref_self_convergence` (自己収束判定) の実装 <!-- id: 403 -->
+    - [x] `problems.jl`: Problem 2 & 3 実装 <!-- id: 404 -->
 
-- [ ] **解析 & 可視化** <!-- id: 500 -->
-    - [ ] `analysis.jl` の実装 (L-inf, L2 誤差) <!-- id: 501 -->
-    - [ ] `visualization.jl` の実装 (RecipesBase/Plots) <!-- id: 502 -->
-    - [ ] `scripts/verify_benchmarks.jl` の作成 <!-- id: 503 -->
+- [/] **解析 & 可視化** <!-- id: 500 -->
+    - [x] `analysis.jl` の実装 (L-inf, L2 誤差) <!-- id: 501 -->
+    - [x] `visualization.jl` の実装 (RecipesBase/Plots) <!-- id: 502 -->
+    - [x] `scripts/verify_benchmarks.jl` の作成 <!-- id: 503 -->
 
 ## フェーズ 3: 受入テスト・ドキュメント (v1.0.0)
-- [ ] **最終検証** <!-- id: 600 -->
-    - [ ] ACC-P1-T1 検証 (P1 Exact) <!-- id: 601 -->
-    - [ ] ACC-P4-T8 検証 (P4 Exact) <!-- id: 602 -->
-    - [ ] ACC-P5-FIG 検証 (P5 Qualitative) <!-- id: 603 -->
-    - [ ] ACC-P2/P3 検証 (Fourier Ref) <!-- id: 604 -->
+- [/] **最終検証** <!-- id: 600 -->
+    - [x] ACC-P1-T1 検証 (P1 Exact) <!-- id: 601 -->
+    - [x] ACC-P4-T8 検証 (P4 Exact) <!-- id: 602 -->
+    - [/] ACC-P5-FIG 検証 (P5 Qualitative) <!-- id: 603 -->
+    - [x] ACC-P2/P3 検証 (Fourier Ref) <!-- id: 604 -->
 
 - [ ] **ドキュメント** <!-- id: 700 -->
     - [ ] `README.md` の完成 <!-- id: 701 -->
