@@ -1,0 +1,11 @@
+*.jl.cov
+*.jl.*.cov
+*.ji
+*.o
+build/
+docs/build/
+docs/site/
+Manifest.toml
+test_output.txt
+test_output_*.txt
+.DS_Store
